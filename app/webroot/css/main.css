@@ -1,0 +1,57 @@
+html, body {
+	background: url(../images/body_bg.jpg);
+	/*font-family: cursive;*/
+	font-family: "Segoe UI" , Frutiger, "Frutiger Linotype" , "Dejavu Sans" , "Helvetica Neue" , Tahoma, Arial, sans-serif;
+}
+
+body { padding-top: 70px; }
+
+
+.login-form{
+	margin-top: 50px;
+}
+.error {
+  color: rgba(255, 0, 0, 0.5);
+}
+
+.center{
+	text-align: center;
+}
+
+#select-date{
+	display: inline-block;
+}
+
+#search-bar{
+	padding-bottom: 5px;
+}
+
+.more-tools-content {
+	margin-top: 5px;
+}
+
+/* More tools button */
+.more-tools{
+	display: inline-block;
+	margin-top: 5px;
+}
+
+.more-tools:hover{
+	cursor: pointer;
+}
+
+.icon-file{
+	display: inline-block;
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+
+.icon-file:hover{
+	cursor: pointer;
+}
+
+
+.tips {
+	font-size: 11px;
+	color: #444;
+}
