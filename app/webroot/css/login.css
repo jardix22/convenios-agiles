@@ -1,0 +1,39 @@
+html, body {
+	background: url(../images/body_bg.jpg);
+	/*font-family: cursive;*/
+	font-family: "Segoe UI" , Frutiger, "Frutiger Linotype" , "Dejavu Sans" , "Helvetica Neue" , Tahoma, Arial, sans-serif;
+}
+
+body { padding-top: 70px; }
+
+.bannner{
+	text-align: center;
+}
+.banner-image{
+	display: block;
+	text-align: center;
+	background-color: transparent;
+}	
+
+.banner-text{
+	display: block;
+	text-align: center;
+	font-size: 2em;
+	text-shadow: 1px 1px 1px #ccc;
+}
+
+.banner-tip{
+	color: #888;
+	font-weight: normal;
+	font-size: 1.1em;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	text-align: center;
+	display: block;
+}
+.login-form{
+	margin-top: 50px;
+}
+.error {
+	color: rgba(255, 0, 0, 0.5);
+}

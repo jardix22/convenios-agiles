@@ -7,13 +7,6 @@ html, body {
 body { padding-top: 70px; }
 
 
-.login-form{
-	margin-top: 50px;
-}
-.error {
-  color: rgba(255, 0, 0, 0.5);
-}
-
 .center{
 	text-align: center;
 }
@@ -49,7 +42,6 @@ body { padding-top: 70px; }
 .icon-file:hover{
 	cursor: pointer;
 }
-
 
 .tips {
 	font-size: 11px;

@@ -1,33 +1,3 @@
-<style type="text/css">
-		.bannner{
-			text-align: center;
-		}
-		.banner-image{
-			display: block;
-			text-align: center;
-			background-color: transparent;
-		}	
-
-		.banner-text{
-			display: block;
-			text-align: center;
-			font-size: 2em;
-			text-shadow: 1px 1px 1px #ccc;
-			/*border: 1px solid #222;*/
-		}
-
-		.banner-tip{
-			color: #888;
-			font-weight: normal;
-			font-size: 1.1em;
-			margin-top: 10px;
-			margin-bottom: 0px;
-			text-align: center;
-			display: block;
-		}
-</style>
-
-
 <div class="container">
 	<div class="row" id="main"></div>
 </div>

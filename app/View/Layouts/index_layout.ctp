@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>App::Agreements</title>
-	<?php echo $this->Html->css('master.login'); ?>
+	<?php echo $this->Html->css('master'); ?>
 	<?php echo $this->Html->css('bootstrap-datetimepicker.min'); ?>
 
 	<style type="text/Ass">
