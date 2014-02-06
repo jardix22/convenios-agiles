@@ -17,27 +17,21 @@
 	<?php echo $this->fetch('content'); ?>
 		
 	<!-- Thirt-Party Libraries (Order matters) -->
-	<?php echo $this->Html->script('jquery-2.0.3'); ?>
+	<?php echo $this->Html->script('jquery-2.1.0.min'); ?>
 	<?php echo $this->Html->script('json2'); ?>
-	<?php echo $this->Html->script('underscore'); ?>
-	<?php echo $this->Html->script('backbone'); ?>
-	<?php echo $this->Html->script('backbone.marionette'); ?>
-	
-	<?php echo $this->Html->script('FormView'); ?>
+	<?php echo $this->Html->script('underscore-min'); ?>
+	<?php echo $this->Html->script('backbone-min'); ?>
+	<?php echo $this->Html->script('backbone-validation-min'); ?>
+	<?php echo $this->Html->script('backbone.marionette.min'); ?>
 
-	<?php echo $this->Html->script('bootstrap'); ?>
-	<?php echo $this->Html->script('backbone-validation'); ?>
+	<?php echo $this->Html->script('bootstrap.min'); ?>
 	<?php echo $this->Html->script('jsFormy'); ?>
 	<?php echo $this->Html->script('JSerialize'); ?>
-	<?php echo $this->Html->script('jquery.dateFormat-1.0'); ?>
 	
-	<?php echo $this->Html->script('moment-2.4.0'); ?>
+	<?php echo $this->Html->script('moment.min'); ?>
 	
 	<?php echo $this->Html->script('bootstrap-datetimepicker'); ?>
 	<?php echo $this->Html->script('locales/bootstrap-datetimepicker.es'); ?>
-
-
-
 		
 	<?php echo $this->Html->script('../assets/agreement/app'); ?>
 	<?php echo $this->Html->script('../assets/agreement/App.Agreements'); ?>

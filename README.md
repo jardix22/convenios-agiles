@@ -1,41 +1,17 @@
-CakePHP
-=======
+Convenios Ágiles
+================
 
-[![CakePHP](http://cakephp.org/img/cake-logo.png)](http://www.cakephp.org)
+Convenios Ágiles es una aplicación web
 
-CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC.
-Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.
+¿Para qué utilizar la aplicación web Convenios Ágiles?
+------------------------------------------------------
+La aplicación nos permite el registro y búsqueda de los convenios suscritos por la Universidad Nacional del Altiplano-Puno (UNAP), Además de generar reportes por facultades, año, tipo de cobertura y vigencia; solicitudes que requieren las distintas escuelas Profesionales con ocasión de alcanzar su proceso de Acreditación.
 
-Some Handy Links
-----------------
+¿Qué nos facilita la aplicación en estos momentos?
+--------------------------------------------------
+La aplicación agiliza y mejora significativamente la atención que presta la Oficina de Cooperación Nacional e Internacional a la comunidad universitaria, instituciones públicas y privadas. Generando reportes.
 
-[CakePHP](http://www.cakephp.org) - The rapid development PHP framework
-
-[CookBook](http://book.cakephp.org) - THE CakePHP user documentation; start learning here!
-
-[API](http://api.cakephp.org) - A reference to CakePHP's classes
-
-[Plugins](http://plugins.cakephp.org/) - A repository of extensions to the framework
-
-[The Bakery](http://bakery.cakephp.org) - Tips, tutorials and articles
-
-[Community Center](http://community.cakephp.org) - A source for everything community related
-
-[Training](http://training.cakephp.org) - Join a live session and get skilled with the framework
-
-[CakeFest](http://cakefest.org) - Don't miss our annual CakePHP conference
-
-[Cake Software Foundation](http://cakefoundation.org) - Promoting development related to CakePHP
-
-Get Support!
-------------
-
-[#cakephp](http://webchat.freenode.net/?channels=#cakephp) on irc.freenode.net - Come chat with us, we have cake
-
-[Google Group](https://groups.google.com/group/cake-php) - Community mailing list and forum
-
-[GitHub Issues](https://github.com/cakephp/cakephp/issues) - Got issues? Please tell us!
-
-[![Bake Status](https://secure.travis-ci.org/cakephp/cakephp.png?branch=master)](http://travis-ci.org/cakephp/cakephp)
-
-![Cake Power](https://raw.github.com/cakephp/cakephp/master/lib/Cake/Console/Templates/skel/webroot/img/cake.power.gif)
+El stack de desarrollo
+----------------------
+[Cakephp](http://cakephp.org/). Framework MVC desarrollado en PHP
+[Marionette.js](http://marionettejs.com/) Framework MV* desarrollado en javascript
