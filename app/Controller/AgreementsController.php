@@ -1,29 +1,23 @@
 <?php
 class AgreementsController extends AppController
 {	
-	public function beforeFilter($value='')
-	{
+	public function beforeFilter($value='') {
 		if (parent::isAuthenticated()){
 			$this->loadModel('Lifeline');
 		}
 	}
 
-	public function index()
-	{
-		// ----- json setting ------
+	public function index()	{
 		$this->viewClass = 'Json';
-		$this->RequestHandler->setContent('json', 'application/json' );	
+		$this->RequestHandler->setContent('json', 'application/json' );			
 		
-		$data = $this->Agreement->find('jsonList');
+		$data = $this->Agreement->find('jsonList');		
 		
-		// -------- json setting ---------
 		$this->set('data', $data);
 		$this->set('__serialize', 'data');
 	}
 
-	public function view($id = null)
-	{
-		// ----- json setting ------
+	public function view($id = null) {
 		$this->viewClass = 'Json';
 		$this->RequestHandler->setContent('json', 'application/json');	
 		
@@ -32,13 +26,11 @@ class AgreementsController extends AppController
 		}
 		$data = $this->Agreement->find('jsonItem', array('conditions' => array('id' => $id)));
 
-		// -------- json setting ---------
 		$this->set('data', $data);
 		$this->set('__serialize', 'data');
 	}
 
-	public function add()
-	{
+	public function add(){
 		// ----- json setting ------
 		$this->viewClass = 'Json';
 		$this->RequestHandler->setContent('json', 'application/json' );
@@ -57,8 +49,7 @@ class AgreementsController extends AppController
 		$this->set('__serialize', 'data');
 	}
 
-	public function edit($id=null)
-	{
+	public function edit($id = null) {
 		// ----- json setting ------
 		$this->viewClass = 'Json';
 		$this->RequestHandler->setContent('json', 'application/json' );
@@ -74,7 +65,7 @@ class AgreementsController extends AppController
 					$this->Lifeline->Push($result['Agreement']['id'], 'modified', $this->Session->read('userId'));
 					$data = $result['Agreement'];
 			} else {
-				$this->Session->setFlash(__('The node could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The agreeemnt could not be saved. Please, try again.'));
 			}
 		} else {
 			$this->request->data = $this->Agreement->read(null, $id);
@@ -85,8 +76,7 @@ class AgreementsController extends AppController
 		$this->set('__serialize', 'data');	
 	}
 
-	public function delete($id = null)
-	{
+	public function delete($id = null) {
 		if (!$this->request->is('post') && !$this->request->is('delete')) {
 			throw new MethodNotAllowedException();
 		}
@@ -94,19 +84,17 @@ class AgreementsController extends AppController
 		$this->Agreement->id = $id;
 		
 		if (!$this->Agreement->exists()) {
-			throw new NotFoundException(__('Invalid node'));
+			throw new NotFoundException(__('Invalid agreeemnt'));
 		}
 		
 		if ($this->Agreement->delete()) {
-
 			$this->Lifeline->Push($id, 'deleted', $this->Session->read('userId'));
 			$this->set('data', true);
 			$this->set('__serialize', 'data');	
 		}
 	}
 
-	public function search()
-	{
+	public function search() {
 		// ----- json setting ------
 		$this->viewClass = 'Json';
 		$this->RequestHandler->setContent('json', 'application/json' );
@@ -128,7 +116,6 @@ class AgreementsController extends AppController
 			}else{
 				$title = '%'.$items['title'].'%';
 			}
-			
 			array_push($conditions, array('title LIKE' => $title)); 
 		}
 
@@ -173,7 +160,6 @@ class AgreementsController extends AppController
 		$results = $this->Agreement->find('jsonList', array('conditions' => $conditions, 'limit' => 20));
 
 		// filter with expired date
-
 		if (isset($items['is_validity']) && $items['is_validity'] != "") {
 			foreach ($results as $key => $value) {
 				$date1 = new DateTime($value['expired_date']);
@@ -194,47 +180,7 @@ class AgreementsController extends AppController
 		$this->set('__serialize', 'data');
 	}
 
-	public function iSearch()
-	{
-		// ----- json setting ------
-		// $this->viewClass = 'Json';
-		// $this->RequestHandler->setContent('json', 'application/json' );	
-
-		// $items = $this->request->query;
-
-		// $conditions = [];
-		// $limit= [];		
-		// $items['title'] = "bra + tecno";
-
-		// // Setting title
-		// if ($items['title'] != null) {
-		// 	$title = "";
-		// 	$words = explode("+", $items['title']);
-
-		// 	if(count($words) > 1){
-		// 		foreach ($words as $word) {	
-		// 			$title = $title.'%'.trim($word).'%';
-		// 		}
-		// 	}else{
-		// 		$title = '%'.$items['title'].'%';
-		// 	}
-			
-		// 	array_push($conditions, array('title LIKE' => $title)); 
-		// }
-
-		// Setting Conditions
-
-		// if ($items['title'] != null) {
-			// foreach ($items as $key => $item) {
-				// // $condition = [];
-				// $condition[$key.' LIKE'] = '%'.$item.'%';
-				// array_push($conditions, $condition ); 
-			// }
-		// }
-		
-		// $data = $this->Agreement->find('jsonList', array('conditions' => $conditions, 'limit' => 20));
-
-		
+	public function iSearch() {	
 		$data = $this->Agreement->find('jsonList', array('conditions' => array(), 'limit' => 30, 'fields' => array('suscription_date', 'expired_date')));
 
 		foreach ($data as $key => $value) {
@@ -247,7 +193,6 @@ class AgreementsController extends AppController
 			echo $interval->format('%R%a days');
 		    echo "</pre>";
 		}
-
 
 		// -------- json setting ---------
 		$this->set('data', $data);

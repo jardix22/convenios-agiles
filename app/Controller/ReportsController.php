@@ -61,4 +61,3 @@ class ReportsController extends AppController
 		$this->response->type('pdf');
 	}
 }
- ?>

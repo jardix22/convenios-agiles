@@ -10,13 +10,11 @@ class MainController extends AppController {
 		if ($this->action == 'login') {
 			return;
 		}
-		
 		parent::beforeFilter();
 	}
 
 	public function login() {
 		$this->isLogged();
-		
 		$this->layout = "login_layout";
 	}
 
