@@ -101,8 +101,8 @@ class AgreementsController extends AppController
 
 		$items = $this->request->query;
 		$data = array();
-		$conditions = [];
-		$limit= [];
+		$conditions = array();
+		$limit= array();
 
 		// Title attribute
 		if (isset($items['title']) && $items['title'] != "") {

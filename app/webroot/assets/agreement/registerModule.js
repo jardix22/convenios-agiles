@@ -248,10 +248,10 @@ App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) 
 					});
 
 					self.listenTo(self.collection, "sync", function (model) {
-						self.ui.spinner.html("Listo..!");
+						// self.ui.spinner.html("Listo..!");
 						setTimeout(function() {
 							self.$el.slideUp("slow");
-						}, 2000);
+						}, 1000);
 					});
 					self.firts = false;
 				};
