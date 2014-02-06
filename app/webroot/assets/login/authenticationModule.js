@@ -1,9 +1,7 @@
-var Authentication;
-
-Authentication = App.module('Authentication');
+/*global TodoMVC */
+'use strict';
 
 App.module('Authentication', function (Authentication) {
-
 	Authentication.addInitializer(function () {
 		this.controller = new Authentication.Controller({ region: App.mainRegion });
 		this.router = new Authentication.Router({ controller: this.controller });
@@ -21,11 +19,7 @@ App.module('Authentication', function (Authentication) {
 			});
 		},
 		authenticate: function (username, password ){
-			var formValues = {
-				username: username,
-				password: password
-			}
-
+			var formValues = { username: username, password: password };
 			$.ajax({
 				url:'login',
 				type:'POST',
@@ -59,9 +53,7 @@ App.module('Authentication', function (Authentication) {
 	});
 });
 
-
 App.module('Authentication.Views', function (Views) {
-	
 	Views.Login = Backbone.Marionette.ItemView.extend({
 		template: "#login-template",
 		events: {

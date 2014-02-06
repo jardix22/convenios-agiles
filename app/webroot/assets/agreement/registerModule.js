@@ -1,7 +1,6 @@
 /*global TodoMVC */
 'use strict';
 
-
 App.module('Agreement', function (Agreement, App, Backbone, Marionette ) {
 
 	Agreement.Layout = Backbone.Marionette.Layout.extend({
@@ -14,8 +13,6 @@ App.module('Agreement', function (Agreement, App, Backbone, Marionette ) {
 
 	Agreement.Controller = Backbone.Marionette.Controller.extend({
 		initialize: function (options) {
-			console.log("Agreement::Controller.initialize");
-
 			this.region = options.region;
 			this.loginView = options.loginView;
 		},
@@ -43,10 +40,7 @@ App.module('Agreement', function (Agreement, App, Backbone, Marionette ) {
 	});
 
 	Agreement.addInitializer(function () {
-		console.log("RegisterModule::addInitializer");
-		
 		App.agreements = new App.Agreements.AgreementSearchList();
-		
 		Agreement.agreementList = new App.Agreements.AgreementList();
 		Agreement.agreementList.fetch();
 
@@ -56,7 +50,6 @@ App.module('Agreement', function (Agreement, App, Backbone, Marionette ) {
 });
 
 App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) {
-	
 	var EditFormModalView = Backbone.Marionette.ItemView.extend({
 		template: "#edit-form-template",
 		ui: {
@@ -64,15 +57,12 @@ App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) 
 		},
 		events: {
 			'click .save-modal': 'onSave',
-			// 'submit form': 'onSave'
 		},
 		initialize: function () {
 			Backbone.Validation.bind(this);
 		},
-		onRender: function () {
-			
+		onRender: function () {			
 			var response = this.model.toJSON();
-			console.log("model:: ", this.model);
 			
 			collectorDatapicker();
 
@@ -96,12 +86,9 @@ App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) 
 					{type: "empty"},
 					{type: "text", name:"responsible", label: "Responsables", required: true, content: "col-lg-12", value: response.responsible},
 					{type: "group", label: "Suscripcion", inputs: [
-						// {type: "date", name: "suscription_date", label: "Fecha de Suscripción", required: true, content: "col-lg-3", value: response.suscription_date},
 						{type: "text", class: "datepicker-item", data: [ {name: 'format', value: "DD/MM/YYYY"} ], name: "suscription_date", label: "Fecha de Suscripción", required: true, content: "col-lg-3", value: moment(response.suscription_date).format("L"), help: "Ejm. 31/01/2014"},
 						{type: "text", name:"rectory_resolution", label: "Resolucion Rectoral", required: true, content: "col-lg-3", value: response.rectory_resolution},
-						{type: "text", name:"validity", label: "Vigencia", required: true, content: "col-lg-6", value: response.validity, help: "Ejm. 2 días | 15 meses | 5 años | 30/10/2014 | indefinido"},
-
-						], 
+						{type: "text", name:"validity", label: "Vigencia", required: true, content: "col-lg-6", value: response.validity, help: "Ejm. 2 días | 15 meses | 5 años | 30/10/2014 | indefinido"}], 
 						content: "col-lg-12"
 					},
 					{type: "button", label: "Guardar", name:"save",class:"btn-default save-modal", content: "col-lg-12 center"}
@@ -126,7 +113,6 @@ App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) 
 			
 			if(this.model.isValid(true)){
 				this.model.beforeSave();
-	            console.log(this.model.toJSON());
 				this.model.save();
 	            
 				App.vent.trigger("modal:hide");
@@ -134,7 +120,6 @@ App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) 
 	        	var els = this.$el.find('.has-error');
 	        	$(els[0]).find(':input').focus();
 	        }
-
 		},
 		normalizeData: function (data) {
 			moment.lang('es');
@@ -192,7 +177,6 @@ App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) 
 				this.collection.add(this.model);
 				this.model.save();
 	            
-	            // console.log(this.model.toJSON());
 				App.vent.trigger("modal:hide");
 	        }else{
 	        	var els = this.$el.find('.has-error');
@@ -203,8 +187,6 @@ App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) 
 		normalizeData: function (data) {
 			moment.lang('es');
 			var ndate = moment(data.suscription_date, "DD/MM/YYYY");
-			// data.suscription_date = ndate.format("L");
-
 			data.suscription_date = ndate.format("YYYY-MM-DD");
 			return data;
 		}
@@ -258,28 +240,23 @@ App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) 
 			App.vent.on("init:events:collection", function () {
 				if (self.firts) {
 					self.listenTo(self.collection, "add", function (model) {
-						console.log("add");
 						self.$el.slideDown("slow");
 					});
 					
 					self.listenTo(self.collection, "request", function () {
-						console.log("request");
 						self.ui.spinner.html("cargando..");
 					});
 
 					self.listenTo(self.collection, "sync", function (model) {
-						console.log("sync.." + self.firts);
-
 						self.ui.spinner.html("Listo..!");
 						setTimeout(function() {
 							self.$el.slideUp("slow");
-						}, 3000);
+						}, 2000);
 					});
 					self.firts = false;
 				};
 			});
-		},
-		
+		},		
 		onRender: function (argument) {
 			this.$el.hide();
 		}

@@ -9,31 +9,26 @@ App.module('Agreements', function (Agreements, App, Backbone) {
     validation: {
       title: [{
         required: true,
-        msg: "Este campo es obligatorio.",
         fn: 'validateString'
       }],
       objetives: [{
         required: true,
-        // msg: "Este campo es obligatorio.",
         fn: 'validateString'
       }],
       coverage_type: [{
-        required: true,
-        msg: "Este campo es obligatorio."        
+        required: true
       }],
       purpose_type: [{
-        required: true,
-        msg: "Este campo es obligatorio.",
+        required: true
       }],
       location_type: [{
-        fn: 'validateSelect'        
+        fn: 'validateSelect'
       }],
       institution_type: [{
         fn: 'validateSelect'        
       }],
       rectory_resolution: [{
-        required: true,
-        msg: "Este campo es obligatorio."
+        required: true
       }],
       suscription_date: {
         required: true,
@@ -41,7 +36,6 @@ App.module('Agreements', function (Agreements, App, Backbone) {
       },
       validity: [{
           required: true,
-          msg: "Este campo es obligatorio."
         },{
           fn: 'validateValidity'
       }],
@@ -173,11 +167,10 @@ App.module('Agreements', function (Agreements, App, Backbone) {
       return result;
     },
     getExpiredDate: function (suscriptionDate, validity) {
+      moment.lang('es');
 
       var eDate = this.getDate(validity);
       var result = {state: false, date: null};
-
-      moment.lang('es');
       var sDate = moment(suscriptionDate);
 
       if (eDate.isValid) {
@@ -195,9 +188,10 @@ App.module('Agreements', function (Agreements, App, Backbone) {
             result.date = moment().add('years', 10).format('L');
             this.set('is_undefined', true);
             break;
+          default:
+            break;
         }
       }
-
       return result.date;
     }
 
@@ -228,7 +222,6 @@ App.module('Agreements', function (Agreements, App, Backbone) {
           }
           else{
             App.vent.trigger("search:results");
-            console.log("agreements: %o ", agreements);
             self.reset(agreements);
           }
         });
@@ -236,8 +229,7 @@ App.module('Agreements', function (Agreements, App, Backbone) {
       }
     },
     fecthAgreements: function (dataSearch, callback) {
-
-          App.vent.trigger("search:start");
+      App.vent.trigger("search:start");
       
       $.ajax({
         url: 'agreements/search',

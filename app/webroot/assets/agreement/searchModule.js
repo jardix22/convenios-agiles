@@ -30,7 +30,6 @@ App.module('Search', function (Search, App, Backbone, Marionette, $, _) {
     },
     defaultSearch: function () {
       this.search(App.agreements.previousSearch || {title: 'convenio'});
-      console.log("previousSearch:", App.agreements.previousSearch);
     }
   });
 
@@ -82,10 +81,6 @@ App.module('Search.Views', function (Views, App, Backbone, Marionette, $, _) {
         self.$('#coverage_type').val(term.coverage_type);
         self.$('#responsible').val(term.responsible);
 				self.$('#is_validity').val(term.is_validity);
-        
-        // self.$('#suscription_date').val(term.suscription_date);
-        console.log("sele", self.$('#suscription_date').html());
-
       });
 
       App.vent.on("change:date", function() {
@@ -93,18 +88,11 @@ App.module('Search.Views', function (Views, App, Backbone, Marionette, $, _) {
       });
 
       this.$selectDate = this.$('#select-date');
-
-      // var selectDate = new SelectDateView();
-      // this.$selectDate.html(selectDate.render().el);
-      
-      console.log("over initialize...");
       this.render();
     },
     render: function () {
       var selectDate = new SelectDateView();
       this.$selectDate.html(selectDate.render().el);
-      
-      // console.log("renderrrrr");
       return this;
     },
 
@@ -115,7 +103,6 @@ App.module('Search.Views', function (Views, App, Backbone, Marionette, $, _) {
     },
     search: function (event) {
       event.preventDefault();
-      // console.log(":D");
       var data = JSerialize.get(this);
       console.log("data: %o", data);
       App.vent.trigger('search:term', data);
@@ -133,7 +120,6 @@ App.module('Search.Views', function (Views, App, Backbone, Marionette, $, _) {
     },    
     events: {
       'change .select-item': 'onChange',
-      'click .data-interval': 'onClick'
     },
     onRender: function () {
       var self = this;
@@ -162,35 +148,16 @@ App.module('Search.Views', function (Views, App, Backbone, Marionette, $, _) {
 
     },
     onChange: function (e, i) {
-      console.log("changeee");
-
       var optionSelected = this.$('.select-item option:selected');
       if (optionSelected.data('interval-date')) {
         var view = new intervalDateModal();
         App.modal.show(view);
 
       } else{
-        console.log("trigger:interval:render");
         App.vent.trigger("interval:reset");
         this.lastSelection = optionSelected;
-
         App.vent.trigger("change:date");
       };
-    },
-    onClick: function (e, i) {
-      console.log("clickkk");
-
-      var optionSelected = this.$('.select-item option:selected');
-      if (optionSelected.data('interval-date')) {
-        // var view = new intervalDateModal();
-        // App.modal.show(view);
-        console.log("clicckk:trigger:interval");
-      } else{
-        console.log("clickk:trigger:interval:render");
-        // App.vent.trigger("interval:reset");
-        // this.lastSelection = optionSelected;
-      };  
-
     }
   });
 
@@ -207,7 +174,6 @@ App.module('Search.Views', function (Views, App, Backbone, Marionette, $, _) {
       endDate: '#end_date'
     },
     onSendModal: function () {
-      console.log("onSendModal");
       if (this.ui.startDate.val() == "" || this.ui.startDate.val().length < 1) {
         this.ui.startDate.focus();
         return;
@@ -223,14 +189,11 @@ App.module('Search.Views', function (Views, App, Backbone, Marionette, $, _) {
     onSave: function (e) {
       e.preventDefault();
       var data = JSerialize.get(this);
-
+      
       App.vent.trigger("interval:selected", [data]);
       App.vent.trigger("modal:hide");
-
-      console.log("On save form", data);
     },
     onCancel: function () {
-      console.log("interval:set:cancel");
       App.vent.trigger("interval:set:cancel");
     }
   });
@@ -248,7 +211,6 @@ App.module('Search.Views', function (Views, App, Backbone, Marionette, $, _) {
       'click .btn-details': 'detail'
     },
     detail: function () {
-      console.log("click");
       var view = new DetailView({model: this.model});
       App.modal.show(view);
     }

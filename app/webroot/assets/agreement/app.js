@@ -102,7 +102,7 @@ App.on('initialize:before', function () {
   moment.lang('es');
 
   Backbone.Validation.configure({
-      forceUpdate: true
+    forceUpdate: true
   });
 
   _.extend(Backbone.Validation.callbacks, {
@@ -123,12 +123,7 @@ App.on('initialize:before', function () {
   });
 
   window.$.ajaxSetup({
-      statusCode: {
-          401: function(){
-              // Redirec the to the login page.
-              window.location.replace('/#login');
-           
-          },
+      statusCode: {          
           403: function() {
               // 403 -- Access denied
               window.location.replace('/#denied');

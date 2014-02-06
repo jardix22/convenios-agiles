@@ -404,6 +404,8 @@
                         <div class="form-group">
                           <label class="control-label" style="color: #555;">Resolución Rectoral</label>
                           <input type="text" id="rectory_resolution" name="rectory_resolution" class="form-control " required="" value="" placeholder=""> 
+                          <span class="tips">Ejm. 1807-2011-R-UNA | sin resolución</span>
+
                         </div>
                       </div>
                     <div class="col-lg-3"> 
@@ -488,7 +490,6 @@
    </div><!-- /.modal-dialog -->
 </script>
 
- 
 <!-- >> Region Layout -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 <!-- << Region Layout -->
