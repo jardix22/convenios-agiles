@@ -10,12 +10,15 @@ class Lifeline extends AppModel
 
 	public function Push($agreement_id=null, $state=null, $user_id=null)
 	{
-		// $this->loadModel('Lifeline');
-		$data = array('agreement_id' => $agreement_id, 'state' => $state, 'when' => date("Y/m/d H:i:s"), 'user_id' => $user_id);
-		$result = $this->save($data);
+		if ($user_id) {
+			# code...
+			$data = array('agreement_id' => $agreement_id, 'state' => $state, 'when' => date("Y/m/d H:i:s"), 'user_id' => $user_id);
+			$result = $this->save($data);
 
-		if (!$result){
-			throw new NotFoundException(__('Invalid lifeline saving'));
+			if (!$result){
+			}
+		}else{
+			throw new NotFoundException(__("user does't exist"));
 		}
 	}
 }

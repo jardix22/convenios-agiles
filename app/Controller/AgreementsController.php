@@ -13,9 +13,9 @@ class AgreementsController extends AppController
 		// ----- json setting ------
 		$this->viewClass = 'Json';
 		$this->RequestHandler->setContent('json', 'application/json' );	
-
+		
 		$data = $this->Agreement->find('jsonList');
-
+		
 		// -------- json setting ---------
 		$this->set('data', $data);
 		$this->set('__serialize', 'data');
@@ -25,11 +25,11 @@ class AgreementsController extends AppController
 	{
 		// ----- json setting ------
 		$this->viewClass = 'Json';
-		$this->RequestHandler->setContent('json', 'application/json' );	
+		$this->RequestHandler->setContent('json', 'application/json');	
 		
-		// $id = 1;
-
-		if($id == null ){ throw new NotFoundException('Could not find that agreeement'); }
+		if($id){ 
+			throw new NotFoundException('Could not find that agreeement');
+		}
 		$data = $this->Agreement->find('jsonItem', array('conditions' => array('id' => $id)));
 
 		// -------- json setting ---------
@@ -44,34 +44,7 @@ class AgreementsController extends AppController
 		$this->RequestHandler->setContent('json', 'application/json' );
 		$data = array();
 
-		$_data = $this->request->data;
-
-		// catch Maxthon araray bug
-		// if (empty($data)) {
-		// // print_r($this->request['_input:protected']);
-		// }
-
-		date_default_timezone_set('America/Lima'); // or any other timezone - you must set a timezone though
-
-		// echo ">>";
-			// print_r($this->request);
-		// print_r($this->request);
-		// foreach ($this->request as $key => $value) {
-		// 	echo ($key ." - ");
-		// }
-		// echo ">>";
-		// // print_r($_data['suscription_date']);
-
-
-		// $_data['suscription_date'] = DateTime::createFromFormat('d/m/Y', $_data['suscription_date'])->format('Y-m-d');
-		$_data['expired_date'] = DateTime::createFromFormat('d/m/Y', $_data['expired_date'])->format('Y-m-d');
-
-
-
-
-
-
-		if ($result = $this->Agreement->save($_data)) {
+		if ($result = $this->Agreement->save($this->request->data)) {
 			//Lifeline 	
 			$this->Lifeline->Push($result['Agreement']['id'], 'created', $this->Session->read('userId'));
 			$data = $result['Agreement'];
@@ -94,18 +67,10 @@ class AgreementsController extends AppController
 		$this->Agreement->id = $id;
 
 		if (!$this->Agreement->exists()) {
-			throw new NotFoundException(__('Invalid node'));
+			throw new NotFoundException(__('Invalid agreeemnt'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-
-			
-			$_data = $this->request->data;
-			
-			// $_data['suscription_date'] = DateTime::createFromFormat('d/m/Y', $_data['suscription_date'])->format('Y-m-d');
-			
-			$_data['expired_date'] = DateTime::createFromFormat('d/m/Y', $_data['expired_date'])->format('Y-m-d');
-
-			if ($result = $this->Agreement->save($_data)) {
+			if ($result = $this->Agreement->save($this->request->data)) {
 					$this->Lifeline->Push($result['Agreement']['id'], 'modified', $this->Session->read('userId'));
 					$data = $result['Agreement'];
 			} else {
