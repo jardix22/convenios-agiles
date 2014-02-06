@@ -15,7 +15,7 @@ class ReportsController extends AppController
 
 		$ids = $this->request->query('ids');
 		$idList = explode(",", (string)$ids);
-
+		
 		// if (count($idList) > 0) {
 			$results = array();
 			foreach ($idList as $idItem) {

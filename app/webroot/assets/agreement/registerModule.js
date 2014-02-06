@@ -112,7 +112,6 @@ App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) 
 
 			var items = this.ui.form.find('.datepicker-item');
 			$(items).datetimepicker({
-				// startDate: '1/1/1991', 
 				language: 'es',
 				pickTime: false
 			});
@@ -126,8 +125,6 @@ App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) 
 			this.model.set(data);
 			
 			if(this.model.isValid(true)){
-				// App.vent.trigger("modal:hide");
-
 				this.model.beforeSave();
 	            console.log(this.model.toJSON());
 				this.model.save();
@@ -143,7 +140,6 @@ App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) 
 			moment.lang('es');
 			var ndate = moment(data.suscription_date, "DD/MM/YYYY");
 			data.suscription_date = ndate.format("YYYY-MM-DD");
-			// data.suscription_date = ndate.format("L");
 			return data;
 		}
 	});
@@ -156,60 +152,26 @@ App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) 
 	var AddFormModalView = Backbone.Marionette.ItemView.extend({
 		template: "#add-form-modal-template",
 		events: {
-			// 'submit form': 'onSave'
 			'click button#save': 'onSave'
 		},
 		initialize: function () {
 			Backbone.Validation.bind(this);
 			this.listenTo(this.collection, "add", this.render);	
-		},
-		squema: {
-			id:"new-agreement-form",
-			inputs: [
-				{type: "textarea", name:"title", label: "Título", rows: 3, required: true, content: "col-lg-12", class:"i-focus"},
-				{type: "textarea", name:"objetives", label: "Objetivos", rows: 6, required: true, content: "col-lg-12"},
-				{type: "radio", name:"coverage_type", label: "Según tipo de covertura", options: ["Marco", "Específico"], content: "col-lg-4"},
-				{
-					type: "select", name:"purpose_type", label: "Según tipo de propósito", 
-					options: ["Coolaboración", "Cooperación", "Docente Asistencial", "Interinstitucional", "Investigación", "Institucional", "Movilidad Académica", "Prestaciones Recíprocas", "Otros"], 
-					multiple: true, required: true, content: "col-lg-4"
-				},
-				{type: "select", name:"location_type", label: "Según tipo de localización", options: ["", "Internacional", "Nacional", "Local"], required: true, content: "col-lg-4"},
-				{
-					type: "select", name:"institution_type", label: "Según tipo de Institución", 
-					options: [ "", "Compañias Mineras", "Direcciones Regionales de Salud", "Direcciones Regionales de Educación", "EsSalud", "Fundaciones", "Municipios", "Ministerios", "ONG's", "Gobierno Regionales", "Universidades", "Unidades de Gestion Ejecutoras Locales (UGEL)", "Otros"], 
-					required: true, content: "col-lg-4"
-				},
-				{type: "empty"},
-				{type: "group", label: "Suscripción", inputs: [
-					{type: "text", name:"rectory_resolution", label: "Resolución Rectoral", required: true, content: "col-lg-3"},
-					{type: "text", class: "datepicker-item", data: [ {name: 'format', value: "DD/MM/YYYY"} ], name: "suscription_date", label: "Fecha de Suscripción", required: true, content: "col-lg-3", help: "Ejm. 31/01/2014"},
-					{type: "text", name:"validity", label: "Vigencia", required: true, content: "col-lg-6", help: "Ejm. 2 días | 15 meses | 5 años | 30/10/2014 | indefinido"},
-					{type: "empty"},
-					{type: "text", name:"responsible", label: "Responsables", required: true, content: "col-lg-12"}
-
-					], 
-					content: "col-lg-12"
-				},
-				{type: "button", label: "Guardar", name:"save",class:"btn-default", content: "col-lg-12 center"}
-			]
-		},
+		},		
 		onRender: function () {
 			collectorDatapicker();
-
+			
 			var items = this.$('.form-content').find('.datepicker-item');
 
 			if (items.length > 1) {
 				_.each(items, function (item) {
 					$(item).datetimepicker({
-						// startDate: '1/1/1991', 
 						language: 'es',
 						pickTime: false
 					});	
 				});
 			} else{
 				$(items).datetimepicker({
-					// startDate: '1/1/1991', 
 					language: 'es',
 					pickTime: false
 				});
@@ -326,7 +288,6 @@ App.module('Agreement.Views', function (Views, App, Backbone, Marionette, $, _) 
 	Views.ListView = Backbone.Marionette.CompositeView.extend({
 		template : '#agreement-list-composite-template',
 		itemView: ItemView,
-		// itemViewContainer: '.agreement-list',
 		events: {
 			'click #add-agreement': 'onAddButton'
 		},
